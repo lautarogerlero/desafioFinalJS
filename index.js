@@ -6,9 +6,12 @@
 // Se suman los totales para calcular el valor final
 // Finalmente el usuario debe elegir un metodo de pago válido y en base a eso se le muestra el valor que pagará
 
+// objetos del DOM
+const carritoDeCompras = document.querySelector("#carrito");
+const precio = document.querySelector("#precio");
 
 // Array con la lista de productos
-const productos = ["pantalon", "buzo", "remera"]
+const productos = ["pantalon", "buzo", "remera"];
 
 // variables
 let pantalones = 0;
@@ -45,6 +48,11 @@ while (terminar === false){
     }
 }
 
+// DOM
+carritoDeCompras.innerText = `${pantalones} pantalones
+                              ${buzos} buzos
+                              ${remeras} remeras`
+
 // funcion para calcular el precio total de cada producto
 function calcularTotal(producto, precio){
     return producto * precio
@@ -78,25 +86,25 @@ let cerrar = false;
 while (cerrar === false){
     let pago = prompt("Elija un método de pago (A, B, C o D). A: Transferencia, B: Crédito en 1 cuota, C: Crédito en 3 cuotas, D: Crédito en 6 cuotas")
     if (pago.toUpperCase() === "A"){
-        alert(`El valor final con el descuento es $${mediosDePago[0].transferencia}`)
+        precio.innerText = `El valor final con el descuento es $${mediosDePago[0].transferencia}`
         // console.log para que quede en consola tambien
         console.log(`El valor final con el descuento es $${mediosDePago[0].transferencia}`)
         break
     }
     else if (pago.toUpperCase() === "B"){
-        alert(`El pago será en 1 cuota de $${mediosDePago[0].credito1Cuota}`)
+        precio.innerText = `El pago será en 1 cuota de $${mediosDePago[0].credito1Cuota}`
         // console.log para que quede en consola tambien
         console.log(`El pago será en 1 cuota de $${mediosDePago[0].credito1Cuota}`)
         break
     }
     else if (pago.toUpperCase() === "C"){
-        alert(`El pago será en 3 cuotas de $${mediosDePago[0].credito3Cuotas}`)
+        precio.innerText = `El pago será en 3 cuotas de $${mediosDePago[0].credito3Cuotas}`
         // console.log para que quede en consola tambien
         console.log(`El pago será en 3 cuotas de $${mediosDePago[0].credito3Cuotas}`)
         break
     }
     else if (pago.toUpperCase() === "D"){
-        alert(`El pago será en 6 cuotas de $${mediosDePago[0].credito6Cuotas}`)
+        precio.innerText = `El pago será en 6 cuotas de $${mediosDePago[0].credito6Cuotas}`
         // console.log para que quede en consola tambien
         console.log(`El pago será en 6 cuotas de $${mediosDePago[0].credito6Cuotas}`)
         break
