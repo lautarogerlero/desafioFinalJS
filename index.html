@@ -8,16 +8,58 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Bienvenidos</h1>
-    <div>
-        <h2>Carrito de Compras</h2>
-        <p id="carrito"></p>
-        <h2>Precio Final</h2>
-        <p id="precio"></p>
+    <div class="container">
+
+        <header class="header">
+            <nav class="navbar"></nav>
+        </header>
+
+        <main class="main">   
+            <h1>Bienvenidos</h1>
+        </main>
+
+        <section class="productos">
+            <label for="comprar-remera">
+                Cuantas remeras desea?
+            </label>
+            <input type="number" id="comprar-remera">
+            <label for="comprar-buzo">
+                Cuantas buzos desea?
+            </label>
+            <input type="number" id="comprar-buzo">
+            <label for="comprar-pantalon">
+                Cuantas pantalones desea?
+            </label>
+            <input type="number" id="comprar-pantalon">
+            <button id="verCarrito" type="button">Ver carrito</button>
+        </section>
+
+        <section id="carrito" class="compras"> 
+            <h2>Carrito de Compras</h2>
+            <p id="cantidades"></p>
+            <button id="elegirPago" type="button">Elegir metodo de pago</button>
+        </section>
+
+        <section id="metodo-pago" class="pago">
+            <h2>Elija un metodo de pago</h2>
+            <button id="efectivo" type="button">Efectivo (10% off)</button>
+            <button id="unaCuota" type="button">1 cuota</button>
+            <button id="tresCuotas" type="button">3 cuotas</button>
+            <button id="seisCuotas" type="button">6 cuotas</button>
+        </section>
+
+        <section id="valorFinal" class="precio">
+            <h3 id="tituloValorFinal"></h3>
+        </section>
+            
+        <footer class="footer">
+
+        </footer>
+        
     </div>
     
 
 
-    <script src="index.js"></script>
+    <script src="index.js"></script> 
 </body>
 </html>
