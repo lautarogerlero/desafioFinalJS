@@ -1,7 +1,6 @@
-// Se le pide al usuario que ingrese uno de los tres productos
-// Segun el producto que elija, se incrementa el contador de ese producto
-// Si no ingresa un producto que se encuentre en la lista, se le pide que ingrese un producto válido
-// Cuando no quiera comprar más, debe ingresar "NO" y se termina el ciclo while
+// Se muestran los 3 productos y el usuario debe elegir que cantidad de cada uno quiere comprar
+// El valor de cada input se guarda para poder calcular el precio final
+// Una vez elegida la cantidad debe hacer click en "ver carrito" para avanzar con la compra
 // Una funcion calcula el valor total para cada producto, multiplicando la cantidad seleccionada por el precio
 // Se suman los totales para calcular el valor final
 // Finalmente el usuario debe elegir un metodo de pago válido y en base a eso se le muestra el valor que pagará
