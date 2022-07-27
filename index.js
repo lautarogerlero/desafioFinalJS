@@ -6,34 +6,37 @@
 // Finalmente el usuario debe elegir un metodo de pago válido y en base a eso se le muestra el valor que pagará
 
 // objetos del DOM
-const cantidades = document.querySelector("#cantidades");
-const pago = document.querySelector("#metodo-pago");
-const mostrarPrecioFinal = document.querySelector("#valorFinal");
+const pantalones = document.querySelector("#comprar-pantalon");
+const buzos = document.querySelector("#comprar-buzo");
+const remeras = document.querySelector("#comprar-remera");
 const carrito = document.querySelector("#carrito");
 const botonVerCarrito = document.querySelector("#verCarrito");
+const cantidades = document.querySelector("#cantidades");
 const botonPago = document.querySelector("#elegirPago");
+const pago = document.querySelector("#metodo-pago");
 const efectivo = document.querySelector("#efectivo");
 const unaCuota = document.querySelector("#unaCuota");
 const tresCuotas = document.querySelector("#tresCuotas");
 const seisCuotas = document.querySelector("#seisCuotas");
+const mostrarPrecioFinal = document.querySelector("#valorFinal");
 const textoValorFinal = document.querySelector("#tituloValorFinal");
-
-let pantalones = document.querySelector("#comprar-pantalon");
-let buzos = document.querySelector("#comprar-buzo");
-let remeras = document.querySelector("#comprar-remera");
-
-// Array con la lista de productos
-const productos = ["pantalon", "buzo", "remera"];
 
 // precios
 const precioPantalon = 4000;
 const precioRemera = 2500;
 const precioBuzo = 6000;
 
+// Cantidad de cada producto
+let totalPantalones = 0;
+let totalBuzos = 0;
+let totalRemeras = 0;
+
+// Definicion de la variable valorFinal
+let valorFinal = 0;
 
 // funcion para calcular el precio total de cada producto
 function calcularTotal(producto, precio){
-    return producto * precio
+    return producto * precio;
 }
 
 // Apretar el boton para ir al carrito
@@ -60,40 +63,40 @@ botonVerCarrito.onclick = () => {
     else {
         botonVerCarrito.textContent = "Ver carrito";
     }
-    
-    // Array para calcular el vlaor final dependiendo del método de pago
-    const mediosDePago = [
-        {
-            transferencia: valorFinal - valorFinal * 0.1,
-            credito1Cuota: valorFinal,
-            credito3Cuotas: valorFinal / 3,
-            credito6Cuotas: valorFinal / 6
-        }
-    ]
 
-    // Elegir método de pago 
-    // Hacer visible la sección 
-    botonPago.onclick = () => {
-        pago.classList.toggle("ver");
+// Array para calcular el valor final dependiendo del método de pago
+const mediosDePago = [
+    {
+        transferencia: valorFinal - valorFinal * 0.1,
+        credito1Cuota: valorFinal,
+        credito3Cuotas: valorFinal / 3,
+        credito6Cuotas: valorFinal / 6
     }
+]    
 
-    // Dependiendo del método elegido se muestra un texto con el valor a pagar
-    efectivo.onclick = () => {
-        mostrarPrecioFinal.classList.toggle("ver");
-        textoValorFinal.innerText = `El valor a pagar en efectivo es $${mediosDePago[0].transferencia}`;
-    }
-    unaCuota.onclick = () => {
-        mostrarPrecioFinal.classList.toggle("ver");
-        textoValorFinal.innerText = `El valor a pagar en 1 cuota es $${mediosDePago[0].credito1Cuota}`;
-    }
-    tresCuotas.onclick = () => {
-        mostrarPrecioFinal.classList.toggle("ver");
-        textoValorFinal.innerText = `El valor a pagar en 3 cuotas es $${mediosDePago[0].credito3Cuotas}`;
-    }
-    seisCuotas.onclick = () => {
-        mostrarPrecioFinal.classList.toggle("ver");
-        textoValorFinal.innerText = `El valor a pagar en 6 cuotas es $${mediosDePago[0].credito6Cuotas}`;
-    }
+// Elegir método de pago 
+// Hacer visible la sección 
+botonPago.onclick = () => {
+    pago.classList.toggle("ver");
+}
+
+// Dependiendo del método elegido se muestra un texto con el valor a pagar
+efectivo.onclick = () => {
+    mostrarPrecioFinal.classList.toggle("ver");
+    textoValorFinal.innerText = `El valor a pagar en efectivo es $${mediosDePago[0].transferencia}`;
+}
+unaCuota.onclick = () => {
+    mostrarPrecioFinal.classList.toggle("ver");
+    textoValorFinal.innerText = `El valor a pagar en 1 cuota es $${mediosDePago[0].credito1Cuota}`;
+}
+tresCuotas.onclick = () => {
+    mostrarPrecioFinal.classList.toggle("ver");
+    textoValorFinal.innerText = `El valor a pagar en 3 cuotas es $${mediosDePago[0].credito3Cuotas}`;
+}
+seisCuotas.onclick = () => {
+    mostrarPrecioFinal.classList.toggle("ver");
+    textoValorFinal.innerText = `El valor a pagar en 6 cuotas es $${mediosDePago[0].credito6Cuotas}`;
+}
 
 }
 
