@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz@9..144&family=Merriweather&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
@@ -14,44 +15,98 @@
             <nav class="navbar"></nav>
         </header>
 
-        <main class="main">   
-            <h1>Bienvenidos</h1>
-        </main>
-
         <section class="productos">
-            <label for="comprar-remera">
-                Cuantas remeras desea?
-            </label>
-            <input type="number" id="comprar-remera">
-            <label for="comprar-buzo">
-                Cuantas buzos desea?
-            </label>
-            <input type="number" id="comprar-buzo">
-            <label for="comprar-pantalon">
-                Cuantas pantalones desea?
-            </label>
-            <input type="number" id="comprar-pantalon">
-            <button id="verCarrito" type="button">Ver carrito</button>
+            <button id="verCarrito" class="botonCarrito">Ir al carrito</button>
+            <h2 class="tituloProductos">Estos son nuestros productos</h2>
+            <div class="cards">            
+                <div class="card">
+                    <img src="https://via.placeholder.com/200" alt="Remera">
+                    <h4>Remera básica $2500</h4>
+                    <div class="inputCantidad">                   
+                        <label for="comprar-remera">Ingrese la cantidad</label>
+                        <input type="number" id="comprar-remera" min="0">
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://via.placeholder.com/200" alt="Buzo">
+                    <h4>Buzo básico $6000</h4>
+                    <div class="inputCantidad">  
+                        <label for="comprar-buzo">Ingrese la cantidad</label>
+                        <input type="number" id="comprar-buzo" min="0">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="https://via.placeholder.com/200" alt="Pantalón">
+                    <h4>Pantalón básico $4000</h4>
+                    <div class="inputCantidad">  
+                        <label for="comprar-pantalon">Ingrese la cantidad</label>
+                        <input type="number" id="comprar-pantalon" min="0">
+                    </div>
+                </div>
+                                
+                <div class="card">
+                    <img src="https://via.placeholder.com/200" alt="Zapatillas">
+                    <h4>Zapatillas básicas $10.000</h4>
+                    <div class="inputCantidad">  
+                        <label for="comprar-zapatillas">Ingrese la cantidad</label>
+                        <input type="number" id="comprar-zapatillas" min="0">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        
+        <section class="carritoVacio" id="carritoVacio">
+            <h3>El carrito de compras está vacio</h3>
         </section>
 
-        <section id="carrito" class="compras"> 
+        <section id="carrito" class="mostrarCarrito">
             <h2>Carrito de Compras</h2>
-            <p id="cantidades"></p>
-            <button id="elegirPago" type="button">Elegir metodo de pago</button>
-        </section>
-
-        <section id="metodo-pago" class="pago">
-            <h2>Elija un metodo de pago</h2>
-            <button id="efectivo" type="button">Efectivo (10% off)</button>
-            <button id="unaCuota" type="button">1 cuota</button>
-            <button id="tresCuotas" type="button">3 cuotas</button>
-            <button id="seisCuotas" type="button">6 cuotas</button>
-        </section>
-
-        <section id="valorFinal" class="precio">
-            <h3 id="tituloValorFinal"></h3>
+            <div class="divCarrito">
+                <p id="productosCarrito"></p>
+                <div class="botonesCarrito">
+                    <button id="botonMetodoPago" type="button">Elegir metodo de pago</button>
+                    <button id="vaciarCarrito" type="button">Vaciar Carrito</button>
+                </div>
+            </div>
         </section>
             
+        <section class="finalizarCompra">
+
+            <div id="metodoPago" class="pago">
+                <h2>Elija un metodo de pago</h2>
+                <button id="efectivo" type="button">Efectivo (10% off)</button>
+                <button id="unaCuota" type="button">1 cuota</button>
+                <button id="tresCuotas" type="button">3 cuotas</button>
+                <button id="seisCuotas" type="button">6 cuotas</button>
+
+                <div id="valorFinal" class="precio">
+                    <h3 id="tituloValorFinal"></h3>
+                    <button id="finalizarCompra">Finalizar compra</button>
+                    
+                </div> 
+            </div>
+
+            <form class="formulario" id="formulario">
+                <label for="formNombre">Nombre</label>
+                <input type="text" id="formNombre" required>
+                <label for="formApellido">Apellido</label>
+                <input type="text" id="formApellido" required>
+                <label for="formEmail">Email</label>
+                <input type="email" id="formEmail" required>
+                <label for="formDireccion">Dirección</label>
+                <input type="text" id="formDireccion" required>
+                <label for="formCP">Código Postal</label>
+                <input type="text" id="formCP" required>
+                <label>
+                    <input type="submit" value="Listo" id="submit">
+                </label>
+            </form> 
+
+        </section>
+
         <footer class="footer">
 
         </footer>
@@ -59,7 +114,7 @@
     </div>
     
 
-
     <script src="index.js"></script> 
+    
 </body>
 </html>
