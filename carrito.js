@@ -116,7 +116,9 @@ botonFinalizar.onclick = () => {
 
 // Guardar info del formulario y volver al inicio
 formulario.onsubmit = (e) => {
+    e.preventDefault();
     clientes.push(new Cliente(formNombre.value, formApellido.value, formEmail.value, formDireccion.value, formCP.value, productos));
     subirALS("Cliente", clientes);
     alert("Listo! Gracias por su compra");
+    window.open("../index.html", "_self");
 }   
