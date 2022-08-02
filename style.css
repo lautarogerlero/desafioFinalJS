@@ -93,7 +93,6 @@ h4 {
 
 .mostrarCarrito {
     grid-area: mostrarCarrito;
-    border: 1px solid black;
     flex-direction: column;
     text-align: center;
     padding: 10px;
@@ -123,7 +122,6 @@ h4 {
     flex-direction: column;
     width: 500px;
     height: 500px;
-    border: 1px solid black;
     justify-content: space-between;
     align-items: flex-start;
     padding: 10px;

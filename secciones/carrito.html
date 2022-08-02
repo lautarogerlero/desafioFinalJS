@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <section class="carritoVacio" id="carritoVacio">
+        <h3>El carrito de compras está vacio</h3>
+    </section>
+
+    <section id="carrito" class="mostrarCarrito">
+        <h2>Carrito de Compras</h2>
+        <div class="divCarrito">
+            <p id="productosCarrito"></p>
+            <div class="botonesCarrito">
+                <button id="botonMetodoPago" type="button">Elegir metodo de pago</button>
+                <button id="vaciarCarrito" type="button">Vaciar Carrito</button>
+            </div>
+        </div>
+    </section>
+        
+    <section class="finalizarCompra">
+
+        <div id="metodoPago" class="pago">
+            <h2>Elija un metodo de pago</h2>
+            <button id="efectivo" type="button">Efectivo (10% off)</button>
+            <button id="unaCuota" type="button">1 cuota</button>
+            <button id="tresCuotas" type="button">3 cuotas</button>
+            <button id="seisCuotas" type="button">6 cuotas</button>
+
+            <div id="valorFinal" class="precio">
+                <h3 id="tituloValorFinal"></h3>
+                <button id="finalizarCompra">Finalizar compra</button>
+                
+            </div> 
+        </div>
+
+        <form class="formulario" id="formulario">
+            <label for="formNombre">Nombre</label>
+            <input type="text" id="formNombre" required>
+            <label for="formApellido">Apellido</label>
+            <input type="text" id="formApellido" required>
+            <label for="formEmail">Email</label>
+            <input type="email" id="formEmail" required>
+            <label for="formDireccion">Dirección</label>
+            <input type="text" id="formDireccion" required>
+            <label for="formCP">Código Postal</label>
+            <input type="text" id="formCP" required>
+            <label>
+                <input type="submit" value="Listo" id="submit">
+            </label>
+        </form> 
+
+    </section>
+
+    <script src="../carrito.js"></script>
+</body>
+</html>
