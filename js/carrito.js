@@ -2,6 +2,7 @@ const carritoVacio = document.querySelector("#carritoVacio");
 const carrito = document.querySelector("#carrito");
 const productosCarrito = document.querySelector("#productosCarrito");
 
+const mostrarValorCarrito = document.querySelector("#mostrarValorCarrito");
 const botonMetodoPago = document.querySelector("#botonMetodoPago");
 const metodoPago = document.querySelector("#metodoPago");
 const botonVaciarCarrito = document.querySelector("#vaciarCarrito");
@@ -67,7 +68,7 @@ else {
         `;
         productosCarrito.innerText += textoCarrito;
     })
-    productosCarrito.innerText += `Valor Final: $${valorFinal}`
+    mostrarValorCarrito.innerText = `Valor Final: $${valorFinal}`
 
 }
 
