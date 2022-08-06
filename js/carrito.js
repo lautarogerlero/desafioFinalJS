@@ -51,36 +51,45 @@ function bajarDelLS(clave){
     return valorParseado
 }
 
+// funcion para borrar datos del LS
+function eliminarDelLS(clave){
+    localStorage.removeItem(clave);
+}
+
 // obtener el valor final y los productos del LS
 valorFinal = bajarDelLS("ValorFinal");
 productos = bajarDelLS("Compra");
 
-// chequear si hay productos en el carrito
+// funcion para hacer reduce de los productos y mostrarlos en el HTML
+const productosHmtl = (array) => {
+    const productosReduce = array.reduce((acc, curr) => {
+        return acc + `
+        <p>${curr.producto}: ${Number(curr.cantidad)} = $${curr.precio * curr.cantidad}</p>`
+    } , "")
+    return productosReduce
+}
+
+
 // Mostrar el carrito, si hay productos seleccionados
-if (valorFinal === 0) {
-    carritoVacio.classList.toggle("ver");
-}
-else {
+const mostrarCarrito = () => {
     carrito.classList.toggle("ver");
-    // Mostrar las cantidades y el precio de cada producto en el carrito
-    productos.forEach((elemento) => {
-        let textoCarrito = `${elemento.cantidad} ${elemento.producto}: $${elemento.precio * elemento.cantidad}
-        `;
-        productosCarrito.innerText += textoCarrito;
-    })
+    // Mostrar las cantidades y el precio de cada producto en el carrito    
+    productosCarrito.innerHTML = productosHmtl(productos);
     mostrarValorCarrito.innerText = `Valor Final: $${valorFinal}`
-
 }
 
-// Array para calcular el valor final dependiendo del método de pago
-const mediosDePago = [
-    {
+// OPERADOR TERNARIO (chequear si hay productos en el carrito)
+valorFinal > 0 ? mostrarCarrito() : carritoVacio.classList.toggle("ver");
+
+
+// Objeto para calcular el valor final dependiendo del método de pago
+const mediosDePago = {
         transferencia: valorFinal - valorFinal * 0.1,
         credito1Cuota: valorFinal,
         credito3Cuotas: valorFinal / 3,
         credito6Cuotas: valorFinal / 6
-    }
-]  
+};
+ 
 
 // Elegir método de pago 
 // Hacer visible la sección 
@@ -92,22 +101,26 @@ botonVaciarCarrito.onclick = () => {
     window.open("../index.html", "_self");
 }
 
-// Dependiendo del método elegido se muestra un texto con el valor a pagar
+// Dependiendo del método elegido se muestra un texto con el valor a pagar usando DESTRUCTURING
 efectivo.onclick = () => {
     mostrarPrecioFinal.classList.toggle("ver");
-    textoValorFinal.innerText = `El valor a pagar en efectivo es $${mediosDePago[0].transferencia}`;
+    let {transferencia: pagoTranferencia} = mediosDePago;
+    textoValorFinal.innerText = `El valor a pagar en efectivo es $${pagoTranferencia}`;
 }
 unaCuota.onclick = () => {
     mostrarPrecioFinal.classList.toggle("ver");
-    textoValorFinal.innerText = `El valor a pagar en 1 cuota es $${mediosDePago[0].credito1Cuota}`;
+    let {credito1Cuota: pago1Cuota} = mediosDePago;
+    textoValorFinal.innerText = `El valor a pagar en 1 cuota es $${pago1Cuota}`;
 }
 tresCuotas.onclick = () => {
     mostrarPrecioFinal.classList.toggle("ver");
-    textoValorFinal.innerText = `El valor a pagar en 3 cuotas es $${mediosDePago[0].credito3Cuotas}`;
+    let {credito3Cuotas: pago3Cuotas} = mediosDePago;
+    textoValorFinal.innerText = `El valor a pagar en 3 cuotas es $${pago3Cuotas}`;
 }
 seisCuotas.onclick = () => {
     mostrarPrecioFinal.classList.toggle("ver");
-    textoValorFinal.innerText = `El valor a pagar en 6 cuotas es $${mediosDePago[0].credito6Cuotas}`;
+    let {credito6Cuotas: pago6Cuotas} = mediosDePago
+    textoValorFinal.innerText = `El valor a pagar en 6 cuotas es $${pago6Cuotas}`;
 }
 
 // Mostrar formulario al apretar finalizar
@@ -120,6 +133,10 @@ formulario.onsubmit = (e) => {
     e.preventDefault();
     clientes.push(new Cliente(formNombre.value, formApellido.value, formEmail.value, formDireccion.value, formCP.value, productos));
     subirALS("Cliente", clientes);
+    eliminarDelLS("Compra");
+    eliminarDelLS("ValorFinal");
     alert("Listo! Gracias por su compra");
     window.open("../index.html", "_self");
+
+
 }   
