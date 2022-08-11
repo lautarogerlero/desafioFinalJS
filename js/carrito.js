@@ -135,8 +135,17 @@ formulario.onsubmit = (e) => {
     subirALS("Cliente", clientes);
     eliminarDelLS("Compra");
     eliminarDelLS("ValorFinal");
-    alert("Listo! Gracias por su compra");
-    window.open("../index.html", "_self");
+    swal({
+    title:`Compra Realizada!`,
+    text:`Gracias ${clientes[0].nombre}! Tu compra llegará en 2/3 días habiles.`,
+    icon:"success",
+    button:"Genial",
+    })
+    .then(() => {
+        window.location.href="../index.html"
+    })
+    
+    
 
 
 }   
