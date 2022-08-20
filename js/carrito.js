@@ -1,3 +1,4 @@
+// Objetos del DOM
 const carritoVacio = document.querySelector("#carritoVacio");
 const carrito = document.querySelector("#carrito");
 const productosCarrito = document.querySelector("#productosCarrito");
@@ -22,6 +23,9 @@ const formApellido = document.querySelector("#formApellido");
 const formEmail = document.querySelector("#formEmail");
 const formDireccion = document.querySelector("#formDireccion");
 const formCP = document.querySelector("#formCP");
+
+let productos = JSON.parse(localStorage.getItem("carrito")) || [];
+
 
 // variable para ir agregando los clientes que hacen compras
 let clientes = [];
@@ -56,19 +60,20 @@ function eliminarDelLS(clave){
     localStorage.removeItem(clave);
 }
 
-// obtener el valor final y los productos del LS
-valorFinal = bajarDelLS("ValorFinal");
-productos = bajarDelLS("Compra");
-
 // funcion para hacer reduce de los productos y mostrarlos en el HTML
 const productosHmtl = (array) => {
     const productosReduce = array.reduce((acc, curr) => {
         return acc + `
-        <p>${curr.producto}: ${Number(curr.cantidad)} = $${curr.precio * curr.cantidad}</p>`
+        <div class="cardCarrito">
+            <img src=${curr.image}>
+            <h2>${curr.title}  $${curr.price}</h2>
+        </div>    
+        `
     } , "")
     return productosReduce
 }
 
+let valorFinal = productos.reduce((acc, curr) => acc + Number(curr.price), 0)
 
 // Mostrar el carrito, si hay productos seleccionados
 const mostrarCarrito = () => {
@@ -98,6 +103,7 @@ botonMetodoPago.onclick = () => {
 }
 // Vaciar carrito
 botonVaciarCarrito.onclick = () => {
+    eliminarDelLS("carrito");
     window.open("../index.html", "_self");
 }
 
@@ -133,8 +139,7 @@ formulario.onsubmit = (e) => {
     e.preventDefault();
     clientes.push(new Cliente(formNombre.value, formApellido.value, formEmail.value, formDireccion.value, formCP.value, productos));
     subirALS("Cliente", clientes);
-    eliminarDelLS("Compra");
-    eliminarDelLS("ValorFinal");
+    eliminarDelLS("carrito");
     swal({
     title:`Compra Realizada!`,
     text:`Gracias ${clientes[0].nombre}! Tu compra llegará en 2/3 días habiles.`,
