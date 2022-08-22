@@ -2,6 +2,7 @@
 const carritoVacio = document.querySelector("#carritoVacio");
 const carrito = document.querySelector("#carrito");
 const productosCarrito = document.querySelector("#productosCarrito");
+const botonVolver = document.querySelector("#volverAlInicio");
 
 const mostrarValorCarrito = document.querySelector("#mostrarValorCarrito");
 const botonMetodoPago = document.querySelector("#botonMetodoPago");
@@ -24,8 +25,12 @@ const formEmail = document.querySelector("#formEmail");
 const formDireccion = document.querySelector("#formDireccion");
 const formCP = document.querySelector("#formCP");
 
-let productos = JSON.parse(localStorage.getItem("carrito")) || [];
+// Volver al inicio
+botonVolver.onclick = () => {
+    window.open("../index.html", "_self");
+}
 
+let productos = JSON.parse(localStorage.getItem("carrito")) || [];
 
 // variable para ir agregando los clientes que hacen compras
 let clientes = [];
@@ -67,25 +72,46 @@ const productosHmtl = (array) => {
         <div class="cardCarrito">
             <img src=${curr.image}>
             <h2>${curr.title}  $${curr.price}</h2>
+            <button type="button" class="borrar" id="${curr.id}">X</button>
         </div>    
         `
     } , "")
     return productosReduce
 }
 
+// Borrar del carrito
+function borrarDelCarrito(array) {
+    const botonBorrar = document.querySelectorAll(".borrar");
+
+    for (let i = 0; i < botonBorrar.length; i++){
+        botonBorrar[i].onclick = () => {
+            const botonId = Number(botonBorrar[i].getAttribute("id"));
+            let productoABorrar = array.findIndex(producto => producto.id === botonId);
+            console.log(botonId);
+            console.log(productoABorrar)
+            array.splice(productoABorrar, 1);
+            eliminarDelLS("carrito");
+            subirALS("carrito", array);
+            window.location.reload()
+        };
+    }   
+}
+
 let valorFinal = productos.reduce((acc, curr) => acc + Number(curr.price), 0)
 
 // Mostrar el carrito, si hay productos seleccionados
-const mostrarCarrito = () => {
+const mostrarCarrito = (productos) => {
     carrito.classList.toggle("ver");
     // Mostrar las cantidades y el precio de cada producto en el carrito    
     productosCarrito.innerHTML = productosHmtl(productos);
-    mostrarValorCarrito.innerText = `Valor Final: $${valorFinal}`
+    mostrarValorCarrito.innerText = `Valor Final: $${valorFinal}`;
+
 }
 
 // OPERADOR TERNARIO (chequear si hay productos en el carrito)
-valorFinal > 0 ? mostrarCarrito() : carritoVacio.classList.toggle("ver");
+valorFinal > 0 ? mostrarCarrito(productos) : carritoVacio.classList.toggle("ver");
 
+borrarDelCarrito(productos)
 
 // Objeto para calcular el valor final dependiendo del método de pago
 const mediosDePago = {
@@ -149,8 +175,4 @@ formulario.onsubmit = (e) => {
     .then(() => {
         window.location.href="../index.html"
     })
-    
-    
-
-
 }   

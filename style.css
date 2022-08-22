@@ -15,7 +15,7 @@ header {
     margin-bottom: 10px;
 }
 
-.botonCarrito {
+.botonCarrito, .botonVolver {
     grid-area: botonCarrito;
     background-color: #28f;
     height: 50px;
@@ -107,6 +107,21 @@ img {
 .mostrarCarrito button {
     margin-bottom: 10px;    
     width: 200px;
+    background-color: white;
+}
+
+.mostrarCarrito button:hover {
+    background-color: #28f;
+}
+
+.cardCarrito button {
+    width: 2.5em;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.cardCarrito button:hover {
+    background-color: red;
 }
 
 .divCarrito {
@@ -160,8 +175,12 @@ img {
 button {
     height: 30px;
     cursor: pointer;
-    background-color: #eee;
+    background-color: white;
     border: 1px solid black;
+}
+
+button:hover {
+    background-color: #28f;
 }
 
 .pago button {
